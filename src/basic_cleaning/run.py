@@ -30,14 +30,12 @@ def go(args):
     logger.info(
         f"Dataset price outliers removal outside range: {args.min_price}-{args.max_price}")
 
-    idx = df['longitude'].between(-74.25, -
-                                  73.50) & df['latitude'].between(40.5, 41.2)
-    df = df[idx].copy()
-    logger.info("Dropping outliers of longitude")
-
     # Convert last_review to datetime
     df['last_review'] = pd.to_datetime(df['last_review'])
     logger.info("Converted last_review to datetime")
+
+    # idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    # df = df[idx].copy()
 
     df.to_csv("clean_sample.csv")
     logger.info("Saved dataframe to local")
